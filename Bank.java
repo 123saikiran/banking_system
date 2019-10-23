@@ -23,6 +23,7 @@ public class Bank
       int age = sc.nextInt();
       System.out.println("enter the branch name:");
       String branch=sc.nextLine();
+      System.out.println()
       
     }
     
