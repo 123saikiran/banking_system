@@ -11,7 +11,7 @@ public class Customer implements Serializable
     private String Gender;
     private int age;
     ArrayList<Transactions> t;
-    public Customer(String Cname , String Branch_Name,String Address, int age, String Gender)
+    public Customer(String Cname , String Address, int age ,String Branch_Name, String Gender)
    {
      this.CName=Cname;
      this.Branch_Name = Branch_Name;
