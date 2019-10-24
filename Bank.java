@@ -1,5 +1,5 @@
-import BANKING_SYSTEM;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 public class Bank
 {
   static ArrayList<Customer> customers;
@@ -12,8 +12,8 @@ public class Bank
         accounts.get(i).show();
       }
     }
-
-    public void addAccount()
+    
+    public static void addAccount()
     {
       System.out.println("enter customer Name:");
       String name = sc.nextLine();
@@ -23,8 +23,26 @@ public class Bank
       int age = sc.nextInt();
       System.out.println("enter the branch name:");
       String branch=sc.nextLine();
-      System.out.println()
-      
+      System.out.println("enter gender:");
+      String gender=sc.nextLine();
+       Customer newcustomer = new Customer(name,address,age,branch,gender);
+        Account newaccount = null;
+       System.out.println("enter the balance");
+       double balance=sc.nextDouble();
+        newaccount = new Account(balance);
+        accounts.add(newaccount);
+        customers.add(newcustomer);
+        System.out.println("account created:::!!!!");
     }
-    
-}
+
+
+     public static void main(String args[])
+     {
+       customers = new ArrayList<Customer>();
+       accounts = new ArrayList<Account>();
+       sc=new Scanner(System.in);
+       addAccount();
+       showAccounts();
+       
+     } 
+    }

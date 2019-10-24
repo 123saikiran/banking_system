@@ -1,7 +1,6 @@
-import BANKING_SYSTEM;
 public class Account 
 {
-    public double Account-id;
+    public double Account_id;
     public static double iDcounter=10024;
     public double Balance;
     public Customer customer;
@@ -9,16 +8,16 @@ public class Account
      public Account()
      {
          Balance=0;
-         this.Account-id=iDcounter++;
+         this.Account_id=iDcounter++;
      }
      public Account(double Balance)
      {
          this.Balance=Balance;
-         this.Account-id=iDcounter++;
+         this.Account_id=iDcounter++;
      }
      public double getAccountId()
      {
-         return Account-id;
+         return Account_id;
      }
      public double getBalance()
      {
@@ -42,8 +41,8 @@ public class Account
      }
      public void  show()
      {
-       System.out.println("account No is "+Account-id);
+       System.out.println("account No is "+Account_id);
        System.out.println("balance in rs"+Balance);
-       customer.Show();
+        customer.Show();
      }
 }

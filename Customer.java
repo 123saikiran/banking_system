@@ -1,5 +1,4 @@
 import java.io.*;
-import BANKING_SYSTEM;
 import java.lang.*;
 import java.util.*;
 public class Customer implements Serializable
@@ -18,11 +17,11 @@ public class Customer implements Serializable
      this.Address = Address;
      this.age=age;
      this.Gender=Gender;
-     t = new ArrayList<Transactions>();
+    // t = new ArrayList<Transactions>();
    }
    public Customer()
    {
-      t = new ArrayList<Transactions>();
+     // t = new ArrayList<Transactions>();
    }
    public int getAge()
     {
@@ -47,7 +46,11 @@ public class Customer implements Serializable
      public Account GetAccount()
      {
        return account;
-     }       
+     }    
+     public void setAccount(Account account)
+     {
+       this.account=account;
+     }   
      public void Show()
      {
        System.out.println("Name of the customer :"+CName);
@@ -56,34 +59,12 @@ public class Customer implements Serializable
        System.out.println("address is "+Address);
        System.out.println("gender :"+Gender);
      }
-  /*public void makeTransaction(String from, String to)
+  public void makeTransaction(String from, String to)
   {
       Transactions t1 = new Transactions(from, to);
       Transactions t2 = new Transactions(from, to); 
       t.add(t1);
       t.add(t2);
-  }*/
- /* public void CreatenewUser()
-  {
-    
-  }*/
- /* public static void main(String args[])
-  {
-    ArrayList<Customer> customer = new ArrayList<Customer>();
-    Customer oc = new Customer();
-    Customer s = new Customer();
-    oc.setCname("saikiran");
-    s.setCname("yash");
-    System.out.println(oc.GetAccount_No());
-    System.out.println(oc.getname());
-    System.out.println(s.GetAccount_No());
-    System.out.println(s.getname());
-    customer.add(oc);
-    customer.add(s);
-    System.out.println(customer.get(0).getname());
-
-
-    
   }
-  */
+  
 }
