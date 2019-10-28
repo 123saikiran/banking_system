@@ -1,13 +1,13 @@
 import java.util.*;
 import java.sql.Timestamp;
 class Transactions
-{   
+{  
     String from;
     String to;
     String TimeStamp;
     double Amount_Value;
    private double balance;
-   public Transactions(String from,String to)
+  /* public Transactions(String from,String to)
    {
      this.from=from;
      this.to=to;
@@ -48,5 +48,6 @@ class Transactions
      long time = date. getTime();
      Timestamp ts = new Timestamp(time);
      return "Rs" + anAmount +" has been credited from Account number " + Account_No +" at "+ts;
-    }
+    }*/
   
+}

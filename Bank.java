@@ -15,6 +15,7 @@ public class Bank
     
     public static void addAccount()
     {
+      sc.nextLine();
       System.out.println("enter customer Name:");
       String name = sc.nextLine();
       System.out.println("enter address of the customer :");
@@ -23,6 +24,7 @@ public class Bank
       int age = sc.nextInt();
       System.out.println("enter the branch name:");
       String branch=sc.nextLine();
+      sc.nextLine();
       System.out.println("enter gender:");
       String gender=sc.nextLine();
        Customer newcustomer = new Customer(name,address,age,branch,gender);

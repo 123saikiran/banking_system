@@ -41,8 +41,10 @@ public class Account
      }
      public void  show()
      {
+       
        System.out.println("account No is "+Account_id);
        System.out.println("balance in rs"+Balance);
+       System.out.println("*******************************");
         customer.Show();
      }
 }
