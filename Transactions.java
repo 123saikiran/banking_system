@@ -3,6 +3,7 @@ import java.sql.Timestamp;
 class Transactions
 {  
     String from;
+    Customer customer;
     String to;
     String TimeStamp;
     double Amount_Value;
@@ -12,6 +13,10 @@ class Transactions
      this.from=from;
      this.to=to;
    }
+   public Transactions()
+   {
+     balance=1000;
+   }
    public double Getbalance()
     {
      return balance;
@@ -20,7 +25,7 @@ class Transactions
     {
       return (Amount_Value<=balance);
     }
-    public String debit(double Amount_Value)
+    public void  debit(double Amount_Value)
      {
        if(canDebit(Amount_Value))
        {
@@ -30,16 +35,15 @@ class Transactions
          Date date= new Date();
          long time = date. getTime();
          Timestamp ts = new Timestamp(time);
-         System.out.println("Amount debited at "+TimeStamp+"from account number"+Account_No);
-         return "Rs" + Amount_Value +" has been debited from Acount number " + Account_No;
+         System.out.println("Amount debited at "+ts+"from account number"+customer.GetAccount());
         }
        else
         {
-         return "Account number " + Account_No +" has insufficient amounts to debit" +Amount_Value;
+         System.out.println("Account number " +" has insufficient amounts to debit" +Amount_Value);
         } 
     }
   
-  public static String credit(double anAmount)
+  public  void credit(double anAmount)
    {
      System.out.println("current balance is Rs " +balance);
      balance += anAmount;
@@ -47,7 +51,7 @@ class Transactions
      Date date= new Date();
      long time = date. getTime();
      Timestamp ts = new Timestamp(time);
-     return "Rs" + anAmount +" has been credited from Account number " + Account_No +" at "+ts;
+     System.out.println("an amount "+ anAmount+"has been credited at"+ts);
     }
-  
+
 }

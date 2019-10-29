@@ -8,7 +8,6 @@ public class Account
      public Account()
      {
          Balance=0;
-         this.Account_id=iDcounter++;
      }
      public Account(double Balance)
      {

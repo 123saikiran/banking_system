@@ -4,7 +4,8 @@ import java.util.*;
 public class Customer implements Serializable
 {
     public String CName;
-    public  account;
+    public  double account_id;
+    public static double Id=10245;
     public  String Branch_Name;
     public  String Address;
     public String Gender;
@@ -17,11 +18,13 @@ public class Customer implements Serializable
      this.Address = Address;
      this.age=age;
      this.Gender=Gender;
-    // t = new ArrayList<Transactions>();
+     this.account_id=Id++;
+     t = new ArrayList<Transactions>();
    }
    public Customer()
    {
-     // t = new ArrayList<Transactions>();
+      t = new ArrayList<Transactions>();
+      this.account_id=Id++;
    }
    public int getAge()
     {
@@ -43,13 +46,13 @@ public class Customer implements Serializable
      {
        return CName;
      }
-     public Account GetAccount()
+     public double  GetAccount()
      {
-       return account;
+       return account_id;
      }    
-     public void setAccount(Account account)
+     public void setAccount(double account_id)
      {
-       this.account=account;
+       this.account_id=account_id;
      }   
      public  void Show()
      {
@@ -60,12 +63,24 @@ public class Customer implements Serializable
        System.out.println("address is "+Address);
        System.out.println("gender :"+Gender);
      }
- /* public void makeTransaction(String from, String to)
+  public void makeTransaction(String from, String to)
   {
       Transactions t1 = new Transactions(from, to);
       Transactions t2 = new Transactions(from, to); 
       t.add(t1);
       t.add(t2);
-  }*/
+  }
+  public void debit(double amount)
+  {
+    Transactions t1 = new Transactions();
+    t1.debit(amount);
+    t.add(t1);
+  }
+  public void credit(double  amount)
+  {
+    Transactions t1 = new Transactions();
+    t1.credit(amount);
+    t.add(t1);
+  }
   
 }

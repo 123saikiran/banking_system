@@ -3,17 +3,52 @@ import java.util.Scanner;
 public class Bank
 {
   static ArrayList<Customer> customers;
-  static ArrayList<Account> accounts;
+  st
   static Scanner sc;
-    public static void  showAccounts()
+    public int  searchbyID(double account_id)
     {
-      for(int i=0;i<accounts.size();i++)
+      for(int i=0;i<customers.size();i++)
       {
-        accounts.get(i).show();
+        if(account_id==customers.get(i).GetAccount())
+         return i;
       }
+        return -1;
+    }
+    public void Debit()
+    {
+      System.out.println("enter the account id:");
+      double id = sc.nextDouble();
+      int index=searchbyID(id); 
+      if(index==-1)
+      {
+        System.out.println("account not found!!!");
+        return;
+      }
+       System.out.println("enter the amount to withdraw!!!!");
+       double amount = sc.nextDouble();
+       customers.get(index).debit(amount);
+        System.out.println("operation successfull !!!@@===");
+      
+    }
+    public void credit()
+    {
+      System.out.println("enter the account number??");
+      double id=sc.nextDouble();
+      int index=searchbyID(id);
+      if(index==-1)
+      {
+        System.out.println("account not found !!!!!");
+        return;
+      }
+      System.out.println("enter the amount to credit!!!!");
+      double amount = sc.nextDouble();
+      customers.get(index).credit(amount);
+      
+        System.out.println("amount successfully credited !!!@@===");
+      
     }
     
-    public static void addAccount()
+    public  void addAccount()
     {
       sc.nextLine();
       System.out.println("enter customer Name:");
@@ -22,17 +57,16 @@ public class Bank
       String address=sc.nextLine();
       System.out.println("enter the age of the customer:");
       int age = sc.nextInt();
+      sc.nextLine();
       System.out.println("enter the branch name:");
       String branch=sc.nextLine();
       sc.nextLine();
       System.out.println("enter gender:");
       String gender=sc.nextLine();
-       Customer newcustomer = new Customer(name,address,age,branch,gender);
-        Account newaccount = null;
        System.out.println("enter the balance");
        double balance=sc.nextDouble();
-        newaccount = new Account(balance);
-        accounts.add(newaccount);
+       Customer newcustomer = new Customer(name,address,age,branch,gender);
+       newcustomer.credit(balance);
         customers.add(newcustomer);
         System.out.println("account created:::!!!!");
     }
@@ -40,11 +74,10 @@ public class Bank
 
      public static void main(String args[])
      {
-       customers = new ArrayList<Customer>();
-       accounts = new ArrayList<Account>();
+       Bank b = new Bank();
+       ArrayList<Customer> customers = new ArrayList<Customer>();
        sc=new Scanner(System.in);
-       addAccount();
-       showAccounts();
+       b.addAccount();
        
      } 
     }
