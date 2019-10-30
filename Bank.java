@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Bank
 {
   static ArrayList<Customer> customers;
-  st
   static Scanner sc;
     public int  searchbyID(double account_id)
     {
@@ -66,7 +65,10 @@ public class Bank
        System.out.println("enter the balance");
        double balance=sc.nextDouble();
        Customer newcustomer = new Customer(name,address,age,branch,gender);
-       newcustomer.credit(balance);
+       System.out.println("enter the account number?");
+       double account_id=sc.nextDouble();
+       newcustomer.setAccount(account_id);
+       newcustomer.setBalance(balance);
         customers.add(newcustomer);
         System.out.println("account created:::!!!!");
     }

@@ -17,6 +17,10 @@ class Transactions
    {
      balance=1000;
    }
+   public void setbalance(double balance)
+   {
+     this.balance=balance;
+   }
    public double Getbalance()
     {
      return balance;
