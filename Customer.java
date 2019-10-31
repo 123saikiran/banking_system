@@ -76,15 +76,7 @@ public class Customer implements Serializable
        System.out.println("account number is "+account_id);
        System.out.println("current balance is"+balance);
      }
-     public void updatecreditBalance(double amount)
-     {
-       this.balance=this.balance+amount;
-
-     }
-     public void updatedebitBalance(double amount)
-     {
-       this.balance=this.balance-amount;
-     }
+     
   public void makeTransaction(String from, String to)
   {
       Transactions t1 = new Transactions(from, to);
@@ -92,17 +84,15 @@ public class Customer implements Serializable
       t.add(t1);
       t.add(t2);
   }
-  public void debit(double amount)
+  public void debit(double amount,double account_id)
   {
     Transactions t1 = new Transactions();
-     this.balance=this.balance-amount;
-    t1.debit(amount);
+    t1.debit(amount,account_id);
     t.add(t1);
   }
   public void credit(double  amount,double account_id)
   {
     Transactions t1 = new Transactions();
-     this.balance=this.balance-amount;
     t1.credit(amount,account_id);
     t.add(t1);
   }

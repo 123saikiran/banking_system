@@ -26,7 +26,7 @@ public class Bank
       }
        System.out.println("enter the amount to withdraw!!!!");
        double amount = sc.nextDouble();
-       customers.get(index).debit(amount);
+       customers.get(index).debit(amount,id);
         System.out.println("operation successfull !!!@@===");
       
     }
