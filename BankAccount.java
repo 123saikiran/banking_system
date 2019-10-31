@@ -1,6 +1,6 @@
 public class BankAccount
 {
-   /* double Account_no;
+  /* double Account_no;
     double id=123445;
     public Customer customer;
     double balance;
@@ -43,5 +43,5 @@ public class BankAccount
     public  String getName()
     {
         return customer.getname();
-    } */
+    }*/ 
 }

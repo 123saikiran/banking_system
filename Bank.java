@@ -98,16 +98,17 @@ public class Bank
       customers = new ArrayList<Customer>();
       t = new ArrayList<Transactions>();
        sc=new Scanner(System.in);
-        System.out.println("enter 1:to create account!!!");
+        
+        int y;
+        do 
+        {
+          System.out.println("enter 1:to create account!!!");
         System.out.println("enter 2:to view account details:");
         System.out.println("enter 3: to view transaction details:!!");
         System.out.println("enter 4: to credit an amount in your account!!! ");
         System.out.println("enter 5:to ]debit an amount from your bank!!!");
         System.out.println("enter 6:to make a transfer of money!!!");
         System.out.println("enter 0:to exit ");
-        int y;
-        do 
-        {
            y = sc.nextInt();
           switch(y)
           {
@@ -129,16 +130,7 @@ public class Bank
             case 6:
             b.makeTransactions();
             break;
-            case 7:
-            System.out.println("enter 1:to create account!!!");
-            System.out.println("enter 2:to view account details:");
-            System.out.println("enter 3: to view transaction details:!!");
-            System.out.println("enter 4: to credit an amount in your account!!! ");
-            System.out.println("enter 5:to ]debit an amount from your bank!!!");
-            System.out.println("enter 6:to make a transfer of money!!!");
-            System.out.println("enter 0:to exit ");
-            break;
-
+            
             case 0:
             System.out.println("\n");
             System.out.println("********program ended********");
