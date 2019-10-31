@@ -10,9 +10,10 @@ public class Customer implements Serializable
     public  String Address;
     public String Gender;
     public int age;
+    double balance;
     Transactions transaction;
     ArrayList<Transactions> t;
-    public Customer(String Cname , String Address, int age ,String Branch_Name, String Gender)
+    public Customer(String Cname , String Address, int age ,String Branch_Name, String Gender,double balance)
    {
      this.CName=Cname;
      this.Branch_Name = Branch_Name;
@@ -21,6 +22,8 @@ public class Customer implements Serializable
      this.Gender=Gender;
      this.account_id=Id++;
      t = new ArrayList<Transactions>();
+     Transactions t1=new Transactions(balance);
+     t.add(t1);
    }
    public Customer()
    {
@@ -57,7 +60,16 @@ public class Customer implements Serializable
      }   
      public void setBalance(double balance )
      {
+       transaction=new Transactions();
         transaction.setbalance(balance);
+        t.add(transaction);
+     }
+     public void showBalance()
+     {
+       transaction = new Transactions();
+
+       System.out.println(t.get(0)
+       .Getbalance());
      }
      public  void Show()
      {
@@ -67,6 +79,7 @@ public class Customer implements Serializable
        System.out.println("age is "+age);
        System.out.println("address is "+Address);
        System.out.println("gender :"+Gender);
+       System.out.println("account number is "+account_id);
      }
   public void makeTransaction(String from, String to)
   {

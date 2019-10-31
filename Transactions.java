@@ -7,15 +7,19 @@ class Transactions
     String to;
     String TimeStamp;
     double Amount_Value;
-   private double balance;
+   public double balance;
   public Transactions(String from,String to)
    {
      this.from=from;
      this.to=to;
    }
-   public Transactions()
+   public  Transactions()
    {
-     balance=1000;
+     
+   }
+   public Transactions(double balance)
+   {
+     this.balance=balance;
    }
    public void setbalance(double balance)
    {
