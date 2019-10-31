@@ -7,7 +7,6 @@ class Transactions
     String to;
     String TimeStamp;
     double Amount_Value;
-   public double balance;
   public Transactions(String from,String to)
    {
      this.from=from;
@@ -17,29 +16,18 @@ class Transactions
    {
      
    }
-   public Transactions(double balance)
-   {
-     this.balance=balance;
-   }
-   public void setbalance(double balance)
-   {
-     this.balance=balance;
-   }
-   public double Getbalance()
-    {
-     return balance;
-    }
     public boolean canDebit(double Amount_Value)
     {
-      return (Amount_Value<=balance);
+      return (Amount_Value<=customer.balance);
     }
     public void  debit(double Amount_Value)
      {
        if(canDebit(Amount_Value))
        {
-         System.out.println("Current balance is Rs"+balance);       
-         balance -= Amount_Value;
-         System.out.println("Current balance after the transaction is Rs"+ balance);
+         System.out.println("Current balance is Rs"+customer.balance);       
+         customer.balance -= Amount_Value;
+         customer.updatedebitBalance(Amount_Value);
+         System.out.println("Current balance after the transaction is Rs"+ customer.balance);
          Date date= new Date();
          long time = date. getTime();
          Timestamp ts = new Timestamp(time);
@@ -53,13 +41,14 @@ class Transactions
   
   public  void credit(double anAmount)
    {
-     System.out.println("current balance is Rs " +balance);
+     System.out.println("current balance is Rs " +customer.balance);
      balance += anAmount;
-     System.out.println("current balance after the transaction is Rs"+ balance);
      Date date= new Date();
      long time = date. getTime();
      Timestamp ts = new Timestamp(time);
+     customer.updatecreditBalance(anAmount);
      System.out.println("an amount "+ anAmount+"has been credited at"+ts);
+     System.out.println("current balance after the transaction is Rs"+ customer.balance);
     }
 
 }

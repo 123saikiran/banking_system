@@ -102,14 +102,14 @@ public class Bank
         int y;
         do 
         {
-          System.out.println("enter 1:to create account!!!");
-        System.out.println("enter 2:to view account details:");
-        System.out.println("enter 3: to view transaction details:!!");
-        System.out.println("enter 4: to credit an amount in your account!!! ");
-        System.out.println("enter 5:to ]debit an amount from your bank!!!");
-        System.out.println("enter 6:to make a transfer of money!!!");
-        System.out.println("enter 0:to exit ");
-           y = sc.nextInt();
+         System.out.println("enter 1:to create account!!!");
+         System.out.println("enter 2:to view account details:");
+         System.out.println("enter 3: to view transaction details:!!");
+         System.out.println("enter 4: to credit an amount in your account!!! ");
+         System.out.println("enter 5:to ]debit an amount from your bank!!!");
+         System.out.println("enter 6:to make a transfer of money!!!");
+         System.out.println("enter 0:to exit ");
+         y = sc.nextInt();
           switch(y)
           {
             case 1:
