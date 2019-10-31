@@ -27,8 +27,7 @@ public class Customer implements Serializable
    }
    public Customer()
    {
-      t = new ArrayList<Transactions>();
-      this.account_id=Id++;
+    
    }
    public int getAge()
     {
@@ -60,15 +59,11 @@ public class Customer implements Serializable
      }   
      public void setBalance(double balance )
      {
-       transaction=new Transactions();
-        transaction.setbalance(balance);
-        t.add(transaction);
+       this.balance=balance;
      }
-     public void showBalance()
+     public double  getbalance()
      {
-       transaction = new Transactions();
-
-       System.out.println(t.get(0).Getbalance());
+       return balance;
      }
      public  void Show()
      {
@@ -104,11 +99,11 @@ public class Customer implements Serializable
     t1.debit(amount);
     t.add(t1);
   }
-  public void credit(double  amount)
+  public void credit(double  amount,double account_id)
   {
     Transactions t1 = new Transactions();
      this.balance=this.balance-amount;
-    t1.credit(amount);
+    t1.credit(amount,account_id);
     t.add(t1);
   }
   

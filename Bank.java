@@ -14,8 +14,8 @@ public class Bank
       }
         return -1;
     }
-    public void Debit()
-    {
+     public void Debit()
+     {
       System.out.println("enter the account id:");
       double id = sc.nextDouble();
       int index=searchbyID(id); 
@@ -42,7 +42,7 @@ public class Bank
       }
       System.out.println("enter the amount to credit!!!!");
       double amount = sc.nextDouble();
-      customers.get(index).credit(amount);
+      customers.get(index).credit(amount,id);
       
         System.out.println("amount successfully credited !!!@@===");
       

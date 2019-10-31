@@ -39,10 +39,21 @@ class Transactions
         } 
     }
   
-  public  void credit(double anAmount)
+  public  void credit(double anAmount,double account_no)
    {
+      int y=0;
+      for(int i=0;i<Bank.customers.size();i++)
+      {
+        if(account_no==Bank.customers.get(i).GetAccount())
+        {
+          y=i;
+        }
+      }
+      Customer customer=Bank.customers.get(y);
+
+      
      System.out.println("current balance is Rs " +customer.balance);
-     balance += anAmount;
+     customer.balance += anAmount;
      Date date= new Date();
      long time = date. getTime();
      Timestamp ts = new Timestamp(time);
