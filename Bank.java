@@ -88,7 +88,14 @@ public class Bank
     }
     public void makeTransactions()
     {
-
+        System.out.println("enter the sender account number!!!");
+        double account1=sc.nextDouble();
+        System.out.println("enter the reciever account number!!!!");
+        double account2 = sc.nextDouble();
+        System.out.println("enter the amount !!!");
+        double amount=sc.nextDouble();
+        Customer customer=new Customer();
+        customer.makeTransaction(account1,account2,amount);
     }
 
 

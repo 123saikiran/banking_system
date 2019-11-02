@@ -7,14 +7,9 @@ class Transactions
     String to;
     String TimeStamp;
     double Amount_Value;
-  public Transactions(String from,String to)
+    public  Transactions()
    {
-     this.from=from;
-     this.to=to;
-   }
-   public  Transactions()
-   {
-     
+    
    }
         public void  debit(double Amount_Value,double account_no)
      {
@@ -66,6 +61,40 @@ class Transactions
      Timestamp ts = new Timestamp(time);
      System.out.println("an amount "+ anAmount+"has been credited at"+ts);
      System.out.println("current balance after the transaction is Rs"+ customer.balance);
+    }
+    public void  transfer(double account1 , double account2 , double amount)
+    {
+      Customer customer1 = new Customer();
+      Customer customer2 = new Customer();
+      int x=0;
+      int y=0;
+      for(int i=0;i<Bank.customers.size();i++)
+      {
+        if(account1==Bank.customers.get(i).GetAccount())
+        {
+          x=i;
+        }
+      }
+      for(int j=0;j<Bank.customers.size();j++)
+      {
+        if(account2==Bank.customers.get(j).GetAccount())
+        {
+          y=j;
+        }
+      }
+      customer1=Bank.customers.get(x);
+      customer2=Bank.customers.get(y);
+      customer1.balance=customer1.balance-amount;
+      customer2.balance=customer2.balance+amount;
+      Date date= new Date();
+     long time = date. getTime();
+     Timestamp ts = new Timestamp(time);
+     System.out.println("an amounnt of"+amount+"has been sent to account no"+account2+"at"+ts);
+     System.out.println("balance after transaction of "+account1+"is"+customer1.balance);
+     System.out.println("an amounnt of"+amount+"has been recieved from account no"+account1+"at"+ts);
+     System.out.println("balance after transaction of "+account2+"is"+customer2.balance);
+
+      
     }
 
 }

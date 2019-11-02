@@ -67,7 +67,7 @@ public class Customer implements Serializable
      }
      public  void Show()
      {
-       System.out.println();
+       System.out.println("**********------------**************");
        System.out.println("Name of the customer :"+CName);
        System.out.println("Branch name is :"+Branch_Name);
        System.out.println("age is "+age);
@@ -75,14 +75,16 @@ public class Customer implements Serializable
        System.out.println("gender :"+Gender);
        System.out.println("account number is "+account_id);
        System.out.println("current balance is"+balance);
+       System.out.println("**********----------**************");
      }
      
-  public void makeTransaction(String from, String to)
+  public void makeTransaction(double account1, double account2,double amount)
   {
-      Transactions t1 = new Transactions(from, to);
-      Transactions t2 = new Transactions(from, to); 
+      Transactions t1 = new Transactions();
+      //Transactions t2 = new Transactions();
+      t1.transfer(account1,account2,amount);
       t.add(t1);
-      t.add(t2);
+      //t.add(t2);
   }
   public void debit(double amount,double account_id)
   {
