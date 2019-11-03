@@ -1,102 +1,114 @@
 import java.io.*;
 import java.lang.*;
 import java.util.*;
-public class Customer implements Serializable
-{
-    public String CName;
-    public  double account_id;
-    public static double Id=10245;
-    public  String Branch_Name;
-    public  String Address;
-    public String Gender;
-    public int age;
-    double balance;
-    Transactions transaction;
-    ArrayList<Transactions> t;
-    public Customer(String Cname , String Address, int age ,String Branch_Name, String Gender,double balance)
-   {
-     this.CName=Cname;
-     this.Branch_Name = Branch_Name;
-     this.Address = Address;
-     this.age=age;
-     this.Gender=Gender;
-     this.account_id=Id++;
-     this.balance=balance;
-     t = new ArrayList<Transactions>();
-     
-   }
-   public Customer()
-   {
-    
-   }
-   public int getAge()
-    {
-      return age;
+import java.io.*;
+public class Customer implements Serializable {
+    private String CName;
+    private double account_id;
+    private String Branch_Name;
+    private String Address;
+    private String Gender;
+    private int age;
+    private double balance;
+    public static final long serialVersionUID = 10l;  
+    public ArrayList<Transactions> t;
+
+    public Customer(String Cname, String Address, int age, String Branch_Name, String Gender, double balance) {
+        this.CName = Cname;
+        this.Branch_Name = Branch_Name;
+        this.Address = Address;
+        this.age = age;
+        this.Gender = Gender;
+        this.balance = balance;
+        t = new ArrayList<Transactions>();
+
     }
-    public String getGender() 
-    {
-      return Gender;
+
+    public Customer() {
+        t = new ArrayList<Transactions>();
     }
-     public void setCname(String name)
-     {
-         this.CName = name;
-     } 
-     public String GetBranch_Name()
-     {
-       return Branch_Name;
-     } 
-     public String getname()
-     {
-       return CName;
-     }
-     public double  GetAccount()
-     {
-       return account_id;
-     }    
-     public void setAccount(double account_id)
-     {
-       this.account_id=account_id;
-     }   
-     public void setBalance(double balance )
-     {
-       this.balance=balance;
-     }
-     public double  getbalance()
-     {
-       return balance;
-     }
-     public  void Show()
-     {
-       System.out.println("**********------------**************");
-       System.out.println("Name of the customer :"+CName);
-       System.out.println("Branch name is :"+Branch_Name);
-       System.out.println("age is "+age);
-       System.out.println("address is "+Address);
-       System.out.println("gender :"+Gender);
-       System.out.println("account number is "+account_id);
-       System.out.println("current balance is"+balance);
-       System.out.println("**********----------**************");
-     }
-     
-  public void makeTransaction(double account1, double account2,double amount)
-  {
-      Transactions t1 = new Transactions();
-      //Transactions t2 = new Transactions();
-      t1.transfer(account1,account2,amount);
-      t.add(t1);
-      //t.add(t2);
-  }
-  public void debit(double amount,double account_id)
-  {
-    Transactions t1 = new Transactions();
-    t1.debit(amount,account_id);
-    t.add(t1);
-  }
-  public void credit(double  amount,double account_id)
-  {
-    Transactions t1 = new Transactions();
-    t1.credit(amount,account_id);
-    t.add(t1);
-  }
-  
+
+    public void setAddress(String Address) {
+        this.Address = Address;
+    }
+
+    public String GetAddress() {
+        return this.Address;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setGender() {
+        boolean flag = true;
+        Scanner scan = new Scanner(System.in);
+        while (flag) {
+            String sex = scan.next();
+            if (sex == "male" || sex == "female") {
+                flag = false;
+                switch (sex) {
+                case "male":
+                    this.Gender = "male";
+                    break;
+                case "female":
+                    this.Gender = "female";
+                    break;
+                }
+            }
+        }
+        scan.close();
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setCname(String name) {
+        this.CName = name;
+    }
+
+    public String GetBranch_Name() {
+        return Branch_Name;
+    }
+
+    public String getname() {
+        return CName;
+    }
+
+    public double GetAccount() {
+        return account_id;
+    }
+
+    public void setAccount(double account_id) {
+        this.account_id = account_id;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getbalance() {
+        return balance;
+    }
+
+    public void Show() {
+        System.out.println("**********------------**************");
+        System.out.println("Name of the customer :" + this.getname());
+        System.out.println("Branch name is :" + this.GetBranch_Name());
+        System.out.println("age is " + this.getAge());
+        System.out.println("address is " + this.GetAddress());
+        System.out.println("gender :" + this.getGender());
+        System.out.println("account number is " + this.GetAccount());
+        System.out.println("current balance is" + this.getbalance());
+        System.out.println("**********----------**************");
+    }
+        public void showtransaction() {
+        System.out.println("The following are the transactions");
+        System.out.println("From \t To \t Amount \t Transaction_Type");
+        for (int i = 0; i < this.t.size(); i++)
+        {
+            this.t.get(i).show();
+        }
+    }
 }
