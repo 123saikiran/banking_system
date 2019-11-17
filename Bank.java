@@ -1,10 +1,11 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
 
 public class Bank implements Serializable{
   public ArrayList<Customer> customers;
-  public static final long serialVersionUID = 10l;  
+  public ArrayList<Branch> branches;  
+  public static final long serialVersionUID = 42L;  
+  static Scanner sc ;
     public Bank(){
         customers = new ArrayList<Customer>();
     }
@@ -15,10 +16,20 @@ public class Bank implements Serializable{
     }
     return -1;
   }
+ public int  checkLength(double account )
+ {
+   int count = 0;
+    while(account!=0)
+    {
+      account=account/10.0;
+      count++;
+    }
+    return count;
+ }
 
   public void Debit() {
     System.out.println("enter the account number!!!");
-    Scanner sc = new Scanner(System.in);
+    sc = new Scanner(System.in);
     double account1 = sc.nextDouble();
     System.out.println("enter the amount to debit");
     double amount = sc.nextDouble();
@@ -37,17 +48,19 @@ public class Bank implements Serializable{
         t1.setAmount(amount);
         c1.setBalance(c1.getbalance() - amount);
         c1.t.add(t1);
-      } else if (amount > c1.getbalance()) {
+      } 
+      else if (amount > c1.getbalance()) {
         System.out.println("insufficient amount to withdraw:");
       }
-    } else {
+    } 
+    else 
+    {
       System.out.println("account number invalid!!!");
     }
-    sc.close();
   }
 
   public void credit() {
-    Scanner sc = new Scanner(System.in);
+   sc = new Scanner(System.in);
     System.out.println("enter account number!!!!");
     double account1 = sc.nextDouble();
     System.out.println("enter the amount to credit");
@@ -69,7 +82,6 @@ public class Bank implements Serializable{
     } else {
       System.out.println("account number invalid!!!!");
     }
-    sc.close();
   }
 
   public void showAccounts() {
@@ -80,49 +92,90 @@ public class Bank implements Serializable{
   public void viewAccount()
   {
     System.out.println("enter account number ");
-    Scanner sc = new Scanner(System.in);
+    sc = new Scanner(System.in);
     double account1 = sc.nextDouble();
     int y = searchbyID(account1);
     customers.get(y).Show();
-    sc.close();
   }
 
   public void addAccount() {
     System.out.println("enter customer Name:");
-    Scanner sc = new Scanner(System.in);
+    sc = new Scanner(System.in);
     String name = sc.nextLine();
+    Customer newcustomer = new Customer();
+    newcustomer.setCname(name);
     System.out.println("enter address of the customer :");
     String address = sc.nextLine();
-    System.out.println("enter the age of the customer:");
-    int age = sc.nextInt();
-    sc.nextLine();
-    System.out.println("enter the branch name:");
-    String branch = sc.nextLine();
-    sc.nextLine();
-    System.out.println("enter gender:");
-    String gender = sc.nextLine();
-    System.out.println("enter the balance");
-    double balance = sc.nextDouble();
-    Customer newcustomer = new Customer(name, address, age, branch, gender, balance);
-    System.out.println("enter the account number?");
-    double account_id = sc.nextDouble();
-    newcustomer.setAccount(account_id);
-    customers.add(newcustomer);
-    System.out.println("account created:::!!!!");
-    sc.close();
+    newcustomer.setAddress(address);
+    int age =0;
+      try {
+        System.out.println("enter the age of the customer:");
+          age = sc.nextInt();
+      } 
+      catch (InputMismatchException e)
+      {
+        System.out.println("enter valid age(in integer)");
+        System.exit(0);
+      }
+     System.out.println("enter the branch name:");
+
+     String branch = sc.nextLine();
+      newcustomer.setBranch(branch);
+      sc.nextLine();
+      int balance=0;
+     try
+     {
+     System.out.println("enter the balance");
+     balance = sc.nextInt();
+     }
+     catch(InputMismatchException exception)
+     {
+      System.out.println(exception);
+      System.out.println("enter valid value nextTime");
+      //System.exit(0);
+     }
+     newcustomer.setBalance(balance);
+     sc.nextLine();
+     System.out.println("enter the gender!!!");
+     String gender = sc.nextLine();
+     newcustomer.setGender(gender);
+     newcustomer.setAge(age);
+     double account_id=0;
+     try
+     {
+     System.out.println("enter the account number?");
+     account_id = sc.nextDouble();
+     }
+     catch(InputMismatchException e)
+     {
+      System.out.println("please re enter valid input");
+      //System.exit(0);
+     }
+     boolean f = Account(account_id);
+     if(f==true)
+     {
+      newcustomer.setAccount(account_id);
+      customers.add(newcustomer);
+      System.out.println("account created!!");
+     }
+     else
+     {
+      System.out.println("enter valid account number!");
+     }
+
+
   }
 
   public void showTransactions() {
     System.out.println("enter account number@");
-    Scanner sc = new Scanner(System.in);
+    sc = new Scanner(System.in);
     double account1 = sc.nextDouble();
     int y = searchbyID(account1);
    customers.get(y).showtransaction();
-   sc.close();
   }
 
   public void transfer() {
-    Scanner sc = new Scanner(System.in);
+   sc = new Scanner(System.in);
     System.out.println("enter sender account no!");
     double account1 = sc.nextDouble();
     System.out.println("enter reciever account no!");
@@ -143,11 +196,14 @@ public class Bank implements Serializable{
 
       }
     }
-    if (flag1 && flag2) {
+    if (flag1 && flag2) 
+    {
       Transactions t1 = new Transactions("transfer");
       t1.setFrom(account1);
       t1.setTo(account2);
       t1.setAmount(amount);
+      if(amount<=c1.getbalance())
+      {
       c1.setBalance(c1.getbalance() - amount);
       c1.t.add(t1);
       Transactions t2 = new Transactions("transfer");
@@ -156,18 +212,53 @@ public class Bank implements Serializable{
       t2.setAmount(amount);
       c2.setBalance(c2.getbalance() + amount);
       c2.t.add(t2);
+      }
+      else
+      {
+        System.out.println("you have insufficient balance.");
+      }
 
     }
-    sc.close();
   }
   public void RemoveAccount()
   {
     System.out.println("enter account number");
-    Scanner sc = new Scanner(System.in);
+    sc = new Scanner(System.in);
     double account1 = sc.nextDouble();
     int y = searchbyID(account1);
     customers.remove(y);
-    sc.close();
+    System.out.println("*****account removed succesfully!!!******");
   } 
-
- }
+  public boolean Account(double account)
+  {
+    int i=searchbyID(account);
+    int c = checkLength(account);
+    if(c>5 && i==-1)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+public void  deleteAccount()
+{
+  boolean f = false;
+  System.out.println("enter index!");
+  sc = new  Scanner(System.in);
+  try{
+  int i = sc.nextInt();
+  customers.remove(i);
+  }
+  catch(Exception e)
+  {
+    System.out.println("exception occured!!");
+    f = true;
+  }
+  if(f==false)
+  {
+  System.out.println("account removed succesfully");
+  }
+ } 
+}

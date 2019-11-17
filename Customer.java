@@ -1,5 +1,3 @@
-import java.io.*;
-import java.lang.*;
 import java.util.*;
 import java.io.*;
 public class Customer implements Serializable {
@@ -10,64 +8,63 @@ public class Customer implements Serializable {
     private String Gender;
     private int age;
     private double balance;
-    public static final long serialVersionUID = 10l;  
+    public static final long serialVersionUID = 42L;  
     public ArrayList<Transactions> t;
-
-    public Customer(String Cname, String Address, int age, String Branch_Name, String Gender, double balance) {
-        this.CName = Cname;
-        this.Branch_Name = Branch_Name;
-        this.Address = Address;
-        this.age = age;
-        this.Gender = Gender;
-        this.balance = balance;
-        t = new ArrayList<Transactions>();
-
-    }
-
     public Customer() {
         t = new ArrayList<Transactions>();
     }
 
     public void setAddress(String Address) {
+        boolean f = true;
+        f = isOnlyAlphabet(Address);
+        if(f==true)
+        {
         this.Address = Address;
+        }
+        else
+        {
+          System.out.println("enter valid Address !");
+        }   
     }
 
     public String GetAddress() {
         return this.Address;
     }
+     public void setAge(int age)
+     {
+        this.age=age;
+     }
 
     public int getAge() {
         return age;
     }
 
-    public void setGender() {
-        boolean flag = true;
-        Scanner scan = new Scanner(System.in);
-        while (flag) {
-            String sex = scan.next();
-            if (sex == "male" || sex == "female") {
-                flag = false;
-                switch (sex) {
-                case "male":
-                    this.Gender = "male";
-                    break;
-                case "female":
-                    this.Gender = "female";
-                    break;
-                }
-            }
-        }
-        scan.close();
-    }
+    public void setGender(String sex) {
 
+        this.Gender = sex ;
+    }
     public String getGender() {
         return Gender;
     }
 
     public void setCname(String name) {
+        boolean f = true;
+        f = isOnlyAlphabet(name);
+        if(f==true)
+        {
         this.CName = name;
+        }
+        else
+        {
+          System.out.println("enter valid name !");
+        }
+    }
+    public void setBranch(String Branch_Name)
+    {
+        this.Branch_Name=Branch_Name;
     }
 
+    
     public String GetBranch_Name() {
         return Branch_Name;
     }
@@ -103,12 +100,18 @@ public class Customer implements Serializable {
         System.out.println("current balance is" + this.getbalance());
         System.out.println("**********----------**************");
     }
-        public void showtransaction() {
+    public void showtransaction() {
         System.out.println("The following are the transactions");
         System.out.println("From \t To \t Amount \t Transaction_Type");
         for (int i = 0; i < this.t.size(); i++)
         {
             this.t.get(i).show();
         }
+    }
+    public  boolean isOnlyAlphabet(String str) 
+    { 
+        return ((!str.equals("")) 
+                && (str != null) 
+                && (str.matches("^[a-zA-Z]*$"))); 
     }
 }

@@ -36,7 +36,7 @@ public class MainMenuScreen extends JFrame implements ActionListener{
             bar.add(transactionMenu);
             custList = new ArrayList<Customer>();
             accountList = new ArrayList<BankAccount>();
-            transactionList = new ArrayList<Transaction>();
+            TransactionsList = new ArrayList<Transaction>();
             area = new JTextArea();
  
             createUserInterface();

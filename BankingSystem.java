@@ -4,16 +4,20 @@ import java.io.*;
 public class BankingSystem {
     public static void main(String args[]) {
         Bank b = new Bank();
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         try {
             FileInputStream filestream = new FileInputStream("filename.txt");
             ObjectInputStream os = new ObjectInputStream(filestream);
             b = (Bank) os.readObject();
             os.close();
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
-        int y;
+        catch(ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        int y=0;
         do {
             System.out.println("enter 1:to create account!!!");
             System.out.println("enter 2:to view all account details:");
@@ -23,8 +27,15 @@ public class BankingSystem {
             System.out.println("enter 6:to make a transfer of money!!!");
             System.out.println("enter 7:to view particular account details!!!");
             System.out.println("enter 8:to delete account ");
+            System.out.println("enter 9:to delete account as index ");
             System.out.println("enter 0:to exit ");
-            y = sc.nextInt();
+            try{
+            y = scan.nextInt();
+            }
+            catch(InputMismatchException ex)
+            {
+                System.out.println("exception occured!");
+            }
             switch (y) {
             case 1:
                 b.addAccount();
@@ -50,6 +61,9 @@ public class BankingSystem {
             case 8:
                 b.RemoveAccount();
                 break;
+            case 9:
+               b.deleteAccount();
+               break;
 
             case 0:
                 System.out.println("\n");
@@ -60,7 +74,7 @@ public class BankingSystem {
                     os.writeObject(b);
                     os.close();
                     System.out.println("visited");
-                } catch (Exception ex) {
+                } catch (IOException ex) {
                     System.out.println("exception caught");
                     ex.printStackTrace();
                 }
@@ -68,11 +82,11 @@ public class BankingSystem {
                 break;
             default:
                 System.out.println("invalid input!!!!");
-                break;
+                break;  
             }
 
         } while (y != 0);
-        sc.close();
+        scan.close();
     }
 
 }
