@@ -111,7 +111,7 @@ public class Bank implements Serializable{
     newcustomer.setCname(name);
     }
     boolean rt=false;
-    while(rt!=true)
+    while(rt!=true) 
     {
     System.out.println("enter address of the customer :");
     String address = sc.nextLine();
@@ -126,17 +126,6 @@ public class Bank implements Serializable{
         rs=isAlphabet(branch);
         newcustomer.setBranch(branch);
       }
-    int age =0;
-      try {
-        System.out.println("enter the age of the customer:");
-          age = sc.nextInt();
-      } 
-      catch (InputMismatchException e)
-      {
-        System.out.println("enter valid age(in integer)");
-        System.exit(0);
-      }
-      newcustomer.setAge(age);
       double balance=0;
      try
      {

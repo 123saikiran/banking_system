@@ -6,7 +6,6 @@ public class Customer implements Serializable {
     private String Branch_Name;
     private String Address;
     private String Gender;
-    private int age;
     public static Scanner scan;
     private double balance;
     public static final long serialVersionUID = 42L;  
@@ -31,26 +30,6 @@ public class Customer implements Serializable {
     public String GetAddress() {
         return this.Address;
     }
-     public void setAge(int age)
-     {
-         this.age=age;
-        scan = new Scanner(System.in);
-        if(age<100||age>18)
-        {
-            System.out.println("re enter age correctly!");
-            age=scan.nextInt();
-            setAge(age);
-        }
-        else
-        {
-            this.age=age;
-        }
-        scan.close();
-    }
-    public int getAge() {
-        return age;
-    }
-
     public void setGender(String sex) {
 
         this.Gender = sex ;
@@ -105,7 +84,6 @@ public class Customer implements Serializable {
         System.out.println("**********------------**************");
         System.out.println("Name of the customer :" + this.getname());
         System.out.println("Branch name is :" + this.GetBranch_Name());
-        System.out.println("age is " + this.getAge());
         System.out.println("address is " + this.GetAddress());
         System.out.println("gender :" + this.getGender());
         System.out.println("account number is " + this.GetAccount());
