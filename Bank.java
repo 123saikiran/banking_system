@@ -6,7 +6,8 @@ public class Bank implements Serializable{
   public ArrayList<Branch> branches;  
   public static final long serialVersionUID = 42L;  
   static Scanner sc ;
-    public Bank(){
+    public Bank()
+    {
         customers = new ArrayList<Customer>();
     }
   public int searchbyID(double account_id) {
