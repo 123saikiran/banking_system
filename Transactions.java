@@ -1,3 +1,4 @@
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.io.*;
 
@@ -5,15 +6,15 @@ class Transactions implements Serializable{
   private double from;
   private String transactions_type;
   private double to;
-  // Timestamp ts;
+  Timestamp ts;
   double Amount_Value;
   public static final long serialVersionUID = 42L;     
   public Transactions(String transactions_type)
   {
     this.transactions_type = transactions_type;
-    // Date date= new Date();
-    // long time = date. getTime();
-    // this.ts = new Timestamp(time);
+     Date date= new Date(0);
+     long time = date. getTime();
+     this.ts = new Timestamp(time);
   }
 
   public void setTransaction(String transactions_type)
@@ -55,9 +56,19 @@ class Transactions implements Serializable{
   {
     return this.Amount_Value;
   }
+  public void setTime()
+  {
+    Date date= new Date(0);
+    long time = date. getTime();
+    this.ts = new Timestamp(time);
+  }
+  public Timestamp getTime()
+  {
+    return this.ts;
+  }
 
   public void show() 
   {
-    System.out.println(this.getFrom() + "\t" + this.getTo() + "\t" + this.getAmount() + "\t" + this.getTransactions_type());
+    System.out.println(this.getFrom() + "\t" + this.getTo() + "\t" + this.getAmount() +this.getTime()+ "\t" + this.getTransactions_type());
   }
 }

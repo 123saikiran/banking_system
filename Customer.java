@@ -7,6 +7,7 @@ public class Customer implements Serializable {
     private String Address;
     private String Gender;
     private int age;
+    public static Scanner scan;
     private double balance;
     public static final long serialVersionUID = 42L;  
     public ArrayList<Transactions> t;
@@ -32,9 +33,20 @@ public class Customer implements Serializable {
     }
      public void setAge(int age)
      {
-        this.age=age;
-     }
-
+         this.age=age;
+        scan = new Scanner(System.in);
+        if(age<100||age>18)
+        {
+            System.out.println("re enter age correctly!");
+            age=scan.nextInt();
+            setAge(age);
+        }
+        else
+        {
+            this.age=age;
+        }
+        scan.close();
+    }
     public int getAge() {
         return age;
     }

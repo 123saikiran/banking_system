@@ -99,14 +99,32 @@ public class Bank implements Serializable{
   }
 
   public void addAccount() {
+    Customer newcustomer = new Customer();
+    boolean ft=false;
+    while(ft!=true)
+    {
     System.out.println("enter customer Name:");
     sc = new Scanner(System.in);
     String name = sc.nextLine();
-    Customer newcustomer = new Customer();
+    ft = isAlphabet(name);
     newcustomer.setCname(name);
+    }
+    boolean rt=false;
+    while(rt!=true)
+    {
     System.out.println("enter address of the customer :");
     String address = sc.nextLine();
+    rt=isAlphabet(address);
     newcustomer.setAddress(address);
+    }
+    boolean rs=false;
+      while(rs!=true)
+      {
+        System.out.println("enter the branch name:");
+        String branch = sc.nextLine();
+        rs=isAlphabet(branch);
+        newcustomer.setBranch(branch);
+      }
     int age =0;
       try {
         System.out.println("enter the age of the customer:");
@@ -117,16 +135,12 @@ public class Bank implements Serializable{
         System.out.println("enter valid age(in integer)");
         System.exit(0);
       }
-     System.out.println("enter the branch name:");
-
-     String branch = sc.nextLine();
-      newcustomer.setBranch(branch);
-      sc.nextLine();
-      int balance=0;
+      newcustomer.setAge(age);
+      double balance=0;
      try
      {
      System.out.println("enter the balance");
-     balance = sc.nextInt();
+     balance = sc.nextDouble();
      }
      catch(InputMismatchException exception)
      {
@@ -139,7 +153,6 @@ public class Bank implements Serializable{
      System.out.println("enter the gender!!!");
      String gender = sc.nextLine();
      newcustomer.setGender(gender);
-     newcustomer.setAge(age);
      double account_id=0;
      try
      {
@@ -261,4 +274,10 @@ public void  deleteAccount()
   System.out.println("account removed succesfully");
   }
  } 
+ public  boolean isAlphabet(String str) 
+    { 
+        return ((!str.equals("")) 
+                && (str != null) 
+                && (str.matches("^[a-zA-Z]*$"))); 
+    }
 }
